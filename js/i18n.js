@@ -73,6 +73,7 @@
 
       /* --- footer --- */
       'footer.newsTitle': 'Let us inform you about our offers',
+      'footer.developedBy': 'Website development by',
       'footer.newsText': 'Early-season rates, last-minute cabins and new routes — a handful of emails a year, never more.',
       'footer.emailPh': 'Your email address',
       'footer.signup': 'Sign up',
@@ -492,6 +493,7 @@
       'form.required': 'υποχρεωτικό',
 
       'footer.newsTitle': 'Ενημερωθείτε για τις προσφορές μας',
+      'footer.developedBy': 'Ανάπτυξη ιστοσελίδας από',
       'footer.newsText': 'Τιμές πρώιμης σεζόν, last-minute καμπίνες και νέες διαδρομές — ελάχιστα email τον χρόνο, ποτέ περισσότερα.',
       'footer.emailPh': 'Το email σας',
       'footer.signup': 'Εγγραφή',

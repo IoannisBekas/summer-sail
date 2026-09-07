@@ -1008,6 +1008,23 @@ td.num, th.num { text-align: right; font-variant-numeric: lining-nums tabular-nu
 .footer-bottom a { color: rgba(255,255,255,.4); }
 .footer-bottom a:hover { color: var(--sand); }
 
+.footer-developer {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: rgba(255,255,255,.4);
+  transition: color var(--t);
+}
+.footer-developer img {
+  width: clamp(280px, 24vw, 340px); height: auto;
+  opacity: .68;
+  transition: opacity var(--t);
+}
+.footer-developer:hover { color: rgba(255,255,255,.68); }
+.footer-developer:hover img { opacity: .94; }
+@media (max-width: 540px) {
+  .footer-developer { width: 100%; align-items: flex-start; flex-direction: column; gap: 8px; }
+  .footer-developer img { width: min(280px, 100%); }
+}
+
 /* -------------------------------------------------------- scroll reveal -- */
 [data-reveal] {
   opacity: 0; transform: translateY(30px);
