@@ -136,6 +136,58 @@
     select((tabs.find(function (tab) { return tab.getAttribute('aria-selected') === 'true'; }) || tabs[0]).getAttribute('data-route-tab'));
   }
 
+  /* --------------------------------------------------- reasons carousel -- */
+  function pillarCarousel() {
+    var viewport = d.querySelector('[data-pillars-carousel]');
+    if (!viewport || reduceMotion) return;
+    var track = viewport.querySelector('.pillars');
+    if (!track || track.children.length < 2) return;
+    var timer = null;
+    var moving = false;
+    var pointerStart = null;
+    viewport.classList.add('is-rotating');
+
+    function start() {
+      if (!timer) timer = window.setInterval(step, 5200);
+    }
+    function stop() {
+      window.clearInterval(timer);
+      timer = null;
+    }
+    function step() {
+      if (moving || d.hidden) return;
+      var first = track.firstElementChild;
+      var gap = parseFloat(window.getComputedStyle(track).columnGap) || 0;
+      var distance = first.getBoundingClientRect().width + gap;
+      moving = true;
+      track.style.transition = 'transform 1.25s var(--ease-out)';
+      track.style.transform = 'translate3d(-' + distance + 'px,0,0)';
+      track.addEventListener('transitionend', function finish() {
+        track.appendChild(first);
+        track.style.transition = 'none';
+        track.style.transform = 'translate3d(0,0,0)';
+        track.offsetHeight;
+        moving = false;
+      }, { once: true });
+    }
+
+    viewport.addEventListener('pointerenter', stop);
+    viewport.addEventListener('pointerleave', start);
+    viewport.addEventListener('pointerdown', function (event) { pointerStart = event.clientX; stop(); });
+    viewport.addEventListener('pointerup', function (event) {
+      if (pointerStart !== null && pointerStart - event.clientX > 44) step();
+      pointerStart = null;
+      start();
+    });
+    viewport.addEventListener('pointercancel', function () { pointerStart = null; start(); });
+    viewport.addEventListener('focusin', stop);
+    viewport.addEventListener('focusout', function (event) {
+      if (!viewport.contains(event.relatedTarget)) start();
+    });
+    d.addEventListener('visibilitychange', function () { d.hidden ? stop() : start(); });
+    start();
+  }
+
   /* ------------------------------------------------------ fleet finder -- */
   function fleetFinder() {
     var finder = d.querySelector('[data-fleet-finder]');
@@ -453,6 +505,7 @@
     mobileNav();
     reveal();
     routeAtlas();
+    pillarCarousel();
     fleetFinder();
     pageProgress();
     countUp();

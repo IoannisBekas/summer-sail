@@ -1207,6 +1207,26 @@ td.num, th.num { text-align: right; font-variant-numeric: lining-nums tabular-nu
 .pillar:hover::after { width: 100%; }
 .pillar:hover { padding-inline: 16px; background: linear-gradient(180deg, var(--paper-warm), transparent); }
 
+/* A compact, continuously rotating reasons carousel. */
+.pillars-section { padding-block: clamp(58px, 6vw, 92px); overflow: hidden; }
+.pillars-section .section-head { max-width: 68rem; margin-bottom: clamp(32px, 3.5vw, 48px); }
+.pillars-section .section-head h2 { max-width: 20ch; font-size: clamp(2.65rem, 4.4vw, 4.6rem); line-height: 1.02; }
+.pillars-carousel { --pillar-gap: clamp(18px, 2vw, 30px); overflow-x: auto; touch-action: pan-y; scrollbar-width: none; }
+.pillars-carousel::-webkit-scrollbar { display: none; }
+.pillars-carousel.is-rotating { overflow: hidden; }
+.pillars-carousel .pillars {
+  display: flex; align-items: stretch; gap: var(--pillar-gap); width: 100%;
+  will-change: transform; counter-reset: none;
+}
+.pillars-carousel .pillar {
+  flex: 0 0 calc((100% - var(--pillar-gap) * 2) / 3); min-height: 226px;
+  padding: 26px 24px 30px; border: 1px solid var(--line); background: var(--paper);
+  counter-increment: none;
+}
+.pillars-carousel .pillar::before { content: attr(data-pillar-number); margin-bottom: 1rem; }
+.pillars-carousel .pillar:hover { padding-inline: 24px; background: var(--paper-warm); }
+.pillars-carousel .pillar p { max-width: 32ch; line-height: 1.65; }
+
 /* Signature route atlas. */
 .route-section { overflow: hidden; }
 .route-section__head {
@@ -1327,6 +1347,7 @@ td.num, th.num { text-align: right; font-variant-numeric: lining-nums tabular-nu
   .programme-scope__head { grid-column: 1 / -1; padding: 0 0 40px; }
   .programme-scope__option:first-of-type { border-left: 0; padding-left: 0; }
   .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pillars-carousel .pillar { flex-basis: calc((100% - var(--pillar-gap)) / 2); }
 }
 
 @media (max-width: 720px) {
@@ -1351,6 +1372,8 @@ td.num, th.num { text-align: right; font-variant-numeric: lining-nums tabular-nu
   .programme-scope__option { border-left: 0; border-top: 1px solid rgba(255,255,255,.14); padding: 28px 0; }
   .team { grid-template-columns: 1fr; }
   .team li { min-height: 160px; }
+  .pillars-section .section-head h2 { font-size: clamp(2.35rem, 12vw, 3.5rem); }
+  .pillars-carousel .pillar { flex-basis: min(86%, 320px); min-height: 238px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
