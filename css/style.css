@@ -1128,3 +1128,233 @@ td.num, th.num { text-align: right; font-variant-numeric: lining-nums tabular-nu
   .hero__col { max-width: 40rem; }
   .hero-form { max-width: 34rem; }
 }
+
+/* ========================================================= 2026 refresh == */
+/* A more tactile editorial system: fewer anonymous grids, more journey,
+   provenance and useful interaction. */
+.section { padding: clamp(76px, 8.5vw, 136px) 0; }
+
+/* A quiet progress line gives long editorial pages a sense of position. */
+.page-progress {
+  position: fixed; inset: 0 auto auto 0; z-index: calc(var(--z-header) + 4);
+  width: var(--page-progress, 0%); height: 2px;
+  pointer-events: none; background: var(--sand);
+  box-shadow: 0 0 16px rgba(225, 189, 133, .48);
+}
+
+/* Hero choreography and proof. */
+.hero__col > .eyebrow,
+.hero__col > h1,
+.hero__col > .hero__sub,
+.hero__col > .hero__actions,
+.hero__proof,
+.hero-form { animation: heroEnter .9s var(--ease-out) both; }
+.hero__col > h1 { animation-delay: .08s; }
+.hero__col > .hero__sub { animation-delay: .16s; }
+.hero__col > .hero__actions { animation-delay: .24s; }
+.hero__proof { animation-delay: .31s; }
+.hero-form { animation-delay: .18s; }
+@keyframes heroEnter {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero__proof {
+  display: flex; flex-wrap: wrap; gap: 20px 30px;
+  list-style: none; margin: 38px 0 0; padding: 28px 0 0;
+  border-top: 1px solid rgba(255,255,255,.22);
+}
+.hero__proof li { display: grid; gap: 1px; margin: 0; }
+.hero__proof strong {
+  color: #fff; font-family: var(--font-display); font-size: 1.35rem;
+  font-weight: 400; line-height: 1;
+}
+.hero__proof span {
+  color: rgba(255,255,255,.62); font-size: .57rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+.hero-form {
+  background: linear-gradient(145deg, rgba(9,31,38,.82), rgba(10,18,21,.58));
+  border-color: rgba(235,211,172,.28);
+}
+
+/* A concise provenance rail between the film and the editorial body. */
+.voyage-rail { background: var(--sea); color: #fff; border-top: 1px solid rgba(255,255,255,.08); }
+.voyage-rail__inner {
+  min-height: 88px; display: grid; grid-template-columns: repeat(3, 1fr) 1.25fr;
+  align-items: stretch; padding-block: 0;
+}
+.voyage-rail p,
+.voyage-rail a {
+  min-width: 0; margin: 0; padding: 22px clamp(18px, 2.5vw, 34px);
+  display: flex; align-items: center; gap: 10px;
+  border-right: 1px solid rgba(255,255,255,.11);
+  color: rgba(255,255,255,.64); font-size: .68rem; line-height: 1.35;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.voyage-rail p:first-child { padding-left: 0; }
+.voyage-rail strong { color: var(--sand); font-family: var(--font-display); font-size: 1.08rem; font-weight: 500; }
+.voyage-rail a { justify-content: space-between; padding-right: 0; border-right: 0; color: #fff; transition: color var(--t-fast); }
+.voyage-rail a:hover { color: var(--sand); }
+.voyage-rail__mark { width: 7px; height: 7px; border-radius: 50%; background: #7ca899; box-shadow: 0 0 0 5px rgba(124,168,153,.12); }
+
+/* The reasons section reads as one connected sequence instead of five boxes. */
+.pillars { position: relative; }
+.pillar { transition: background var(--t), padding var(--t); }
+.pillar::after {
+  content: ""; position: absolute; left: 0; top: -1px; width: 0; height: 2px;
+  background: var(--sand-deep); transition: width var(--t);
+}
+.pillar:hover::after { width: 100%; }
+.pillar:hover { padding-inline: 16px; background: linear-gradient(180deg, var(--paper-warm), transparent); }
+
+/* Signature route atlas. */
+.route-section { overflow: hidden; }
+.route-section__head {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap: clamp(40px, 7vw, 110px); align-items: end; margin-bottom: clamp(44px, 6vw, 80px);
+}
+.route-section__head h2 { max-width: 13ch; margin-bottom: 0; }
+.route-section__head .lede { margin-bottom: 0; }
+.route-atlas {
+  display: grid; grid-template-columns: minmax(240px, .36fr) minmax(0, 1fr);
+  min-height: 720px; background: #0b252d; color: #fff;
+  box-shadow: var(--shadow-lg); overflow: hidden;
+}
+.route-atlas__tabs { display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,.12); }
+.route-atlas__tabs button {
+  appearance: none; flex: 1; width: 100%; border: 0; border-bottom: 1px solid rgba(255,255,255,.12);
+  padding: 22px clamp(24px, 2.5vw, 38px); background: transparent; color: rgba(255,255,255,.48);
+  display: grid; align-content: center; gap: 8px; text-align: left; cursor: pointer;
+  transition: color var(--t), background var(--t);
+}
+.route-atlas__tabs button:last-child { border-bottom: 0; }
+.route-atlas__tabs button > span { font-family: var(--font-display); font-size: 1rem; color: var(--sand); }
+.route-atlas__tabs button strong { font-family: var(--font-display); font-size: clamp(1.35rem, 1.7vw, 1.75rem); font-weight: 400; line-height: 1.05; color: inherit; }
+.route-atlas__tabs button small { max-width: 24ch; font-size: .61rem; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; }
+.route-atlas__tabs button[aria-selected="true"] { background: rgba(255,255,255,.08); color: #fff; }
+.route-atlas__tabs button[aria-selected="true"] strong { color: #fff; }
+.route-atlas__panels { display: grid; }
+.route-atlas__panel { min-height: 720px; height: 100%; display: grid; grid-area: 1 / 1; grid-template-rows: minmax(0, 1fr) auto; animation: atlasIn .7s var(--ease-out) both; }
+.route-atlas__panel[hidden] { display: none; }
+@keyframes atlasIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+.route-atlas__visual { position: relative; overflow: hidden; min-height: 410px; isolation: isolate; }
+.route-atlas__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,20,25,.06), rgba(5,20,25,.72)); z-index: -1; }
+.route-atlas__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transform: scale(1.02); }
+.route-atlas__details { padding: 34px clamp(28px, 4vw, 54px) 40px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 10px 40px; align-items: start; }
+.route-atlas__details h3 { color: #fff; margin: 0; grid-column: 1; font-size: clamp(1.8rem, 3vw, 2.8rem); }
+.route-atlas__details > p:not(.route-atlas__stops) { color: rgba(255,255,255,.68); margin: 0; grid-column: 2; grid-row: 2 / span 2; font-size: .9rem; }
+.route-atlas__stops { grid-column: 1 / -1; color: var(--sand); font-size: .62rem; letter-spacing: .13em; text-transform: uppercase; margin: 0 0 12px; }
+.route-atlas__details .link-arrow { grid-column: 1; color: #fff; margin-top: 20px; width: max-content; }
+
+/* Fleet cards now feel like product dossiers. */
+.fleet-showcase .card,
+.fleet-grid .card[data-fleet-card] { padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.fleet-showcase .card__media,
+.fleet-grid .card__media { transition: box-shadow var(--t), transform var(--t); }
+.fleet-showcase .card:hover .card__media,
+.fleet-grid .card:hover .card__media { transform: translateY(-7px); box-shadow: 0 26px 50px -28px rgba(14,42,51,.65); }
+.fleet-showcase .card h3,
+.fleet-grid .card h3 { transition: color var(--t-fast); }
+.fleet-showcase .card:hover h3,
+.fleet-grid .card:hover h3 { color: var(--sand-deep); }
+.fleet-finder {
+  margin: 0 0 clamp(42px, 5vw, 70px); padding: 28px 0;
+  display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); gap: 34px;
+  align-items: end; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line);
+}
+.fleet-finder .eyebrow { margin-bottom: 10px; }
+.fleet-finder h3 { margin: 0; }
+.fleet-filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.fleet-filters button {
+  border: 1px solid var(--line); background: transparent; color: var(--body);
+  padding: 11px 15px; font: 500 .62rem/1 var(--font-ui); letter-spacing: .1em;
+  text-transform: uppercase; cursor: pointer; transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+}
+.fleet-filters button:hover { border-color: var(--ink); color: var(--ink); }
+.fleet-filters button.is-active { background: var(--sea); border-color: var(--sea); color: #fff; }
+.fleet-grid [data-fleet-card].is-filtered { display: none; }
+
+/* Yacht pages use the boat itself as the hero, with a sharper editorial crop. */
+.page-hero--yacht { min-height: clamp(520px, 72vh, 760px); }
+.page-hero--yacht .page-hero__media img { object-position: center 58%; transform: scale(1.015); }
+.page-hero--yacht::after { background: linear-gradient(180deg, rgba(5,16,20,.45), rgba(5,16,20,.18) 38%, rgba(5,16,20,.9)); }
+.page-hero--yacht .page-hero__inner { max-width: 58rem; }
+
+/* Honest programme split: Athens fleet vs. the separate Ionian hosted week. */
+.programme-scope { background: var(--sea); color: #fff; }
+.programme-scope__inner { display: grid; grid-template-columns: 1.1fr 1fr 1fr; padding-block: clamp(42px, 5vw, 70px); }
+.programme-scope__head { padding-right: clamp(30px, 5vw, 70px); }
+.programme-scope__head .eyebrow { color: var(--sand); }
+.programme-scope__head h2 { color: #fff; font-size: clamp(1.8rem, 2.6vw, 2.8rem); margin: 0; }
+.programme-scope__option { display: grid; grid-template-columns: auto 1fr; gap: 22px; padding: 8px clamp(24px, 3vw, 42px); border-left: 1px solid rgba(255,255,255,.14); }
+.programme-scope__option > span { color: var(--sand); font-size: .62rem; font-weight: 600; letter-spacing: .16em; }
+.programme-scope__option h3 { color: #fff; font-size: 1.45rem; }
+.programme-scope__option p { color: rgba(255,255,255,.62); font-size: .82rem; line-height: 1.65; }
+.programme-scope__option .link-arrow { color: #fff; }
+.programme-scope__option--active { background: rgba(255,255,255,.045); }
+
+/* Team provenance without fabricated portraits. */
+.team { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.team li { min-height: 240px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.team li::after {
+  content: attr(data-initials); position: absolute; top: 20px; right: 22px;
+  font: 300 clamp(3rem, 5vw, 5.8rem)/1 var(--font-display); color: rgba(138,101,41,.1);
+  letter-spacing: -.04em; pointer-events: none;
+}
+.team__name { position: relative; z-index: 1; }
+
+/* Reveal should register as polish, never hide content during normal scrolling. */
+[data-reveal] { transform: translateY(20px); transition-duration: .72s; }
+[data-reveal][data-delay="1"] { transition-delay: .08s; }
+[data-reveal][data-delay="2"] { transition-delay: .16s; }
+[data-reveal][data-delay="3"] { transition-delay: .24s; }
+[data-reveal][data-delay="4"] { transition-delay: .32s; }
+
+/* Drawer bug: vertical scrolling must never opt the panel into horizontal scroll. */
+.mobile-nav { overflow-x: hidden; width: 100%; max-width: 100vw; }
+
+@media (max-width: 980px) {
+  .voyage-rail__inner { grid-template-columns: 1fr 1fr; }
+  .voyage-rail p:nth-child(2) { border-right: 0; }
+  .voyage-rail p:first-child, .voyage-rail a { padding-left: var(--gutter); }
+  .route-atlas { grid-template-columns: 1fr; min-height: 0; }
+  .route-atlas__tabs { flex-flow: row wrap; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .route-atlas__tabs button { flex: 0 0 50%; border-right: 1px solid rgba(255,255,255,.12); }
+  .route-atlas__tabs button:nth-child(even) { border-right: 0; }
+  .route-atlas__tabs button:nth-last-child(-n+2) { border-bottom: 0; }
+  .route-atlas__panel { min-height: 600px; }
+  .programme-scope__inner { grid-template-columns: 1fr 1fr; }
+  .programme-scope__head { grid-column: 1 / -1; padding: 0 0 40px; }
+  .programme-scope__option:first-of-type { border-left: 0; padding-left: 0; }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .hero__proof { gap: 18px; }
+  .hero__proof li { flex: 1 1 28%; }
+  .voyage-rail__inner { display: flex; overflow-x: auto; scroll-snap-type: x proximity; padding-inline: var(--gutter); }
+  .voyage-rail p, .voyage-rail a { min-width: 220px; padding-inline: 20px; scroll-snap-align: start; }
+  .voyage-rail p:first-child { padding-left: 0; }
+  .route-section__head { grid-template-columns: 1fr; gap: 24px; }
+  .route-atlas__tabs button { padding: 24px 20px; }
+  .route-atlas__tabs button small { display: none; }
+  .route-atlas__panel { min-height: 0; }
+  .route-atlas__visual { min-height: 330px; }
+  .route-atlas__details { grid-template-columns: 1fr; }
+  .route-atlas__details h3,
+  .route-atlas__details > p:not(.route-atlas__stops),
+  .route-atlas__details .link-arrow { grid-column: 1; grid-row: auto; }
+  .route-atlas__details > p:not(.route-atlas__stops) { margin-top: 8px; }
+  .fleet-finder { grid-template-columns: 1fr; align-items: start; }
+  .fleet-filters { justify-content: flex-start; }
+  .programme-scope__inner { grid-template-columns: 1fr; }
+  .programme-scope__option { border-left: 0; border-top: 1px solid rgba(255,255,255,.14); padding: 28px 0; }
+  .team { grid-template-columns: 1fr; }
+  .team li { min-height: 160px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__col > .eyebrow, .hero__col > h1, .hero__col > .hero__sub,
+  .hero__col > .hero__actions, .hero__proof, .hero-form,
+  .route-atlas__panel { animation: none; }
+}

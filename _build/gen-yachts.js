@@ -90,9 +90,9 @@ function page(y) {
 -->
 
 <!-- ======================================================== page hero -- -->
-<section class="page-hero">
+<section class="page-hero page-hero--yacht">
   <div class="page-hero__media">
-    <img src="${y.heroScene[0]}" alt="${esc(y.heroScene[1])}" fetchpriority="high">
+    <img src="${y.hero}" alt="${esc(y.name)}" fetchpriority="high">
   </div>
   <div class="container">
     <div class="page-hero__inner">

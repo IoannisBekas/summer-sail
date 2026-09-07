@@ -40,8 +40,7 @@
       drawer.classList.add('is-open');
       burger.setAttribute('aria-expanded', 'true');
       d.body.classList.add('nav-open');
-      var first = drawer.querySelector('a, button');
-      if (first) first.focus();
+      if (closeBtn) closeBtn.focus();
     }
     function close() {
       drawer.classList.remove('is-open');
@@ -70,7 +69,15 @@
     });
 
     d.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && drawer.classList.contains('is-open')) close();
+      if (!drawer.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key !== 'Tab') return;
+      var focusable = Array.prototype.slice.call(drawer.querySelectorAll('a[href], button:not([disabled])'));
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && d.activeElement === first) { e.preventDefault(); last.focus(); }
+      if (!e.shiftKey && d.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
 
@@ -94,6 +101,86 @@
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
 
     items.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ------------------------------------------------------- route atlas -- */
+  function routeAtlas() {
+    var atlas = d.querySelector('[data-route-atlas]');
+    if (!atlas) return;
+    var tabs = Array.prototype.slice.call(atlas.querySelectorAll('[data-route-tab]'));
+    var panels = Array.prototype.slice.call(atlas.querySelectorAll('[data-route-panel]'));
+
+    function select(name) {
+      tabs.forEach(function (tab) {
+        var active = tab.getAttribute('data-route-tab') === name;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach(function (panel) {
+        var active = panel.getAttribute('data-route-panel') === name;
+        panel.hidden = !active;
+        panel.classList.toggle('is-active', active);
+      });
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () { select(tab.getAttribute('data-route-tab')); });
+      tab.addEventListener('keydown', function (event) {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        var next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+        tabs[next].focus();
+        select(tabs[next].getAttribute('data-route-tab'));
+      });
+    });
+    select((tabs.find(function (tab) { return tab.getAttribute('aria-selected') === 'true'; }) || tabs[0]).getAttribute('data-route-tab'));
+  }
+
+  /* ------------------------------------------------------ fleet finder -- */
+  function fleetFinder() {
+    var finder = d.querySelector('[data-fleet-finder]');
+    if (!finder) return;
+    var filters = Array.prototype.slice.call(finder.querySelectorAll('[data-fleet-filter]'));
+    var cards = Array.prototype.slice.call(d.querySelectorAll('[data-fleet-card]'));
+
+    filters.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var filter = button.getAttribute('data-fleet-filter');
+        filters.forEach(function (item) {
+          var active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        cards.forEach(function (card) {
+          var guests = Number(card.getAttribute('data-guests'));
+          var year = Number(card.getAttribute('data-built'));
+          var visible = filter === 'all' ||
+            (filter === 'small' && guests <= 7) ||
+            (filter === 'large' && guests >= 8) ||
+            (filter === 'newest' && year >= 2019);
+          card.classList.toggle('is-filtered', !visible);
+        });
+      });
+    });
+  }
+
+  /* ----------------------------------------------------- page progress -- */
+  function pageProgress() {
+    var progress = d.createElement('div');
+    progress.className = 'page-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    d.body.appendChild(progress);
+    var ticking = false;
+    function update() {
+      var distance = d.documentElement.scrollHeight - window.innerHeight;
+      var value = distance > 0 ? Math.min(100, Math.max(0, window.scrollY / distance * 100)) : 0;
+      progress.style.setProperty('--page-progress', value + '%');
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
   }
 
   /* ---------------------------------------------------------- countups -- */
@@ -295,7 +382,7 @@
 
         if (status) {
           status.className = 'form-status is-ok';
-          status.textContent = window.SSI18n.t(form.getAttribute('data-ok-key') || 'form.success');
+          status.textContent = window.SSI18n.t('form.emailReady');
         }
       });
     });
@@ -365,6 +452,9 @@
     stickyHeader();
     mobileNav();
     reveal();
+    routeAtlas();
+    fleetFinder();
+    pageProgress();
     countUp();
     lightbox();
     heroVideo();

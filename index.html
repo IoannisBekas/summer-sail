@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Summer Sail — Don't just dream it, live it</title>
+<title>Summer Sail — Private yacht charters from Athens</title>
 <meta name="description" content="Private sailing holidays in Greece. Skippered yacht charter in the Saronic Gulf, the Aegean and the Cyclades, from Athens.">
 <link rel="canonical" href="https://www.summer-sail.com/">
 <meta name="theme-color" content="#232323">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Summer Sail">
-<meta property="og:title" content="Summer Sail — Don't just dream it, live it">
+<meta property="og:title" content="Summer Sail — Private yacht charters from Athens">
 <meta property="og:description" content="Private sailing holidays in Greece. Skippered yacht charter in the Saronic Gulf, the Aegean and the Cyclades, from Athens.">
 <meta property="og:image" content="https://www.summer-sail.com/assets/img/hero/og-cover.jpg">
 <meta property="og:url" content="https://www.summer-sail.com/">
@@ -182,6 +182,11 @@
         <div class="hero__actions">
           <a class="btn btn--ghost" href="yachts.html" data-i18n="cta.explore">Explore the fleet</a>
         </div>
+        <ul class="hero__proof" aria-label="Summer Sail at a glance">
+          <li><strong>5</strong><span data-i18n="home.s1">Yachts in the fleet</span></li>
+          <li><strong>15+</strong><span data-i18n="home.s4">Years sailing these waters</span></li>
+          <li><strong>24/7</strong><span data-i18n="home.s3">Assistance, on call</span></li>
+        </ul>
       </div>
 
       <!-- Enquiry card — glass, over the film -->
@@ -231,6 +236,15 @@
   </div>
 </section>
 
+<aside class="voyage-rail" aria-label="Summer Sail essentials">
+  <div class="container voyage-rail__inner">
+    <p><span class="voyage-rail__mark"></span><strong><span data-lang-only="en">Athens</span><span data-lang-only="el">Αθήνα</span></strong><span data-lang-only="en">Home port</span><span data-lang-only="el">Βάση στόλου</span></p>
+    <p><strong>5</strong><span data-lang-only="en">Privately managed yachts</span><span data-lang-only="el">Ιδιόκτητα διαχειριζόμενα σκάφη</span></p>
+    <p><strong>250</strong><span data-i18n="home.s2">Inspection points per yacht</span></p>
+    <a href="about.html"><span data-lang-only="en">Meet the people on shore</span><span data-lang-only="el">Γνωρίστε την ομάδα στη στεριά</span><span aria-hidden="true">↗</span></a>
+  </div>
+</aside>
+
 <!-- =========================================================== pillars -- -->
 <section class="section">
   <div class="container">
@@ -264,39 +278,90 @@
   </div>
 </section>
 
-<!-- ====================================================== destinations -- -->
-<section class="section section--warm">
+<!-- ======================================================= route atlas -- -->
+<section class="section section--warm route-section">
   <div class="container">
-    <div class="section-head" data-reveal>
-      <p class="eyebrow" data-i18n="home.destKicker">Proposed routes</p>
-      <h2 data-i18n="home.destTitle">Two seas, one week</h2>
-      <p class="lede" data-i18n="home.destText">Start from Athens and turn either way. Sheltered island-hopping in the Saronic Gulf, or the open blue of the Aegean and the Cyclades.</p>
+    <div class="route-section__head" data-reveal>
+      <div>
+        <p class="eyebrow" data-i18n="home.atlasKicker">The route atlas</p>
+        <h2 data-i18n="home.atlasTitle">Four ways to leave Athens behind.</h2>
+      </div>
+      <p class="lede" data-i18n="home.destText">Choose a gentle island circuit, a historic Peloponnese coast or a longer passage into the Cyclades. Each route starts in Athens and changes with the wind.</p>
     </div>
 
-    <div class="grid grid--2">
-      <a class="dest" href="saronic-gulf.html" data-reveal>
-        <img src="assets/img/destinations/saronic-card.webp" alt="A sailing yacht anchored in a quiet Saronic bay" loading="lazy">
-        <span class="dest__body">
-          <h3 data-i18n="nav.saronic">Saronic Gulf</h3>
-          <p data-i18n="home.saronicD">Sheltered water, short hops and pine-covered islands an hour from Athens. Aegina, Poros, Hydra and the ancient theatre at Epidaurus.</p>
-          <span class="link-arrow">
-            <span data-i18n="cta.discover">Discover the route</span>
-            <svg width="16" height="10" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 6h15m0 0-5-5m5 5-5 5"/></svg>
-          </span>
-        </span>
-      </a>
+    <div class="route-atlas" data-route-atlas data-reveal>
+      <div class="route-atlas__tabs" role="tablist" aria-label="Sailing routes">
+        <button type="button" role="tab" aria-selected="true" aria-controls="route-saronic" id="tab-saronic" data-route-tab="saronic">
+          <span>01</span>
+          <strong data-i18n="nav.saronic">Saronic Gulf</strong>
+          <small data-i18n="home.atlasSaronicMeta">Sheltered · relaxed · short passages</small>
+        </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="route-aegean" id="tab-aegean" data-route-tab="aegean">
+          <span>02</span>
+          <strong data-i18n="nav.aegean">Aegean &amp; Cyclades</strong>
+          <small data-i18n="home.atlasAegeanMeta">Open water · iconic islands · longer passages</small>
+        </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="route-argolic" id="tab-argolic" data-route-tab="argolic">
+          <span>03</span>
+          <strong data-i18n="home.argolic">Argolic Coast</strong>
+          <small data-i18n="home.atlasArgolicMeta">Historic harbours · quiet anchorages · 7–10 nights</small>
+        </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="route-northern" id="tab-northern" data-route-tab="northern">
+          <span>04</span>
+          <strong data-i18n="home.northern">Northern Cyclades</strong>
+          <small data-i18n="home.atlasNorthernMeta">Cycladic character · balanced passages · 7 nights</small>
+        </button>
+      </div>
 
-      <a class="dest" href="aegean-cyclades.html" data-reveal data-delay="1">
-        <img src="assets/img/destinations/aegean-card.webp" alt="A Cycladic village of whitewashed houses above the sea" loading="lazy">
-        <span class="dest__body">
-          <h3 data-i18n="nav.aegean">Aegean &amp; Cyclades</h3>
-          <p data-i18n="home.aegeanD">Whitewashed villages, thousands of bays and the deep blue of the open Aegean. Milos, Paros, Amorgos, Santorini.</p>
-          <span class="link-arrow">
-            <span data-i18n="cta.discover">Discover the route</span>
-            <svg width="16" height="10" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 6h15m0 0-5-5m5 5-5 5"/></svg>
-          </span>
-        </span>
-      </a>
+      <div class="route-atlas__panels">
+        <article class="route-atlas__panel is-active" id="route-saronic" role="tabpanel" aria-labelledby="tab-saronic" data-route-panel="saronic">
+          <div class="route-atlas__visual">
+            <img src="assets/img/destinations/saronic-card.webp" alt="A sailing yacht anchored in a quiet Saronic bay" loading="lazy">
+          </div>
+          <div class="route-atlas__details">
+            <p class="route-atlas__stops" data-i18n="home.atlasSaronicStops">Athens · Aegina · Poros · Hydra · Epidaurus</p>
+            <h3 data-i18n="nav.saronic">Saronic Gulf</h3>
+            <p data-i18n="home.saronicD">Sheltered water, short hops and pine-covered islands an hour from Athens.</p>
+            <a class="link-arrow" href="saronic-gulf.html"><span data-i18n="cta.discover">Discover the route</span><span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="route-atlas__panel" id="route-aegean" role="tabpanel" aria-labelledby="tab-aegean" data-route-panel="aegean" hidden>
+          <div class="route-atlas__visual">
+            <img src="assets/img/destinations/aegean-card.webp" alt="A Cycladic village of whitewashed houses above the sea" loading="lazy">
+          </div>
+          <div class="route-atlas__details">
+            <p class="route-atlas__stops" data-i18n="home.atlasAegeanStops">Athens · Kea · Serifos · Paros · Amorgos</p>
+            <h3 data-i18n="nav.aegean">Aegean &amp; Cyclades</h3>
+            <p data-i18n="home.aegeanD">Whitewashed villages, thousands of bays and the deep blue of the open Aegean.</p>
+            <a class="link-arrow" href="aegean-cyclades.html"><span data-i18n="cta.discover">Discover the route</span><span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="route-atlas__panel" id="route-argolic" role="tabpanel" aria-labelledby="tab-argolic" data-route-panel="argolic" hidden>
+          <div class="route-atlas__visual">
+            <img src="assets/img/destinations/saronic-split.webp" alt="A chapel and harbour on the Argolic coast" loading="lazy">
+          </div>
+          <div class="route-atlas__details">
+            <p class="route-atlas__stops" data-i18n="home.atlasArgolicStops">Athens · Methana · Spetses · Monemvasia · Nafplio</p>
+            <h3 data-i18n="home.argolic">Argolic Coast</h3>
+            <p data-i18n="home.argolicD">A slower course past volcanic Methana to elegant Spetses, the rock of Monemvasia and the old streets of Nafplio.</p>
+            <a class="link-arrow" href="contact.html"><span data-i18n="home.planRoute">Plan this route</span><span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="route-atlas__panel" id="route-northern" role="tabpanel" aria-labelledby="tab-northern" data-route-panel="northern" hidden>
+          <div class="route-atlas__visual">
+            <img src="assets/img/destinations/aegean-split.webp" alt="A whitewashed village in the northern Cyclades" loading="lazy">
+          </div>
+          <div class="route-atlas__details">
+            <p class="route-atlas__stops" data-i18n="home.atlasNorthernStops">Athens · Kea · Kythnos · Syros · Tinos</p>
+            <h3 data-i18n="home.northern">Northern Cyclades</h3>
+            <p data-i18n="home.northernD">A focused Cyclades week through Kea and Kythnos to the marble squares of Syros and the villages of Tinos.</p>
+            <a class="link-arrow" href="contact.html"><span data-i18n="home.planRoute">Plan this route</span><span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -310,7 +375,7 @@
       <p class="lede" data-i18n="home.fleetText">42 to 46 feet, sleeping six to ten, all berthed in Athens. Every yacht passes a 250-point inspection before it takes you anywhere.</p>
     </div>
 
-    <div class="grid grid--3">
+    <div class="grid grid--3 fleet-showcase">
       <article class="card" data-reveal>
         <div class="card__media">
           <span class="card__badge">2019</span>

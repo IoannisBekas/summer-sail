@@ -29,9 +29,22 @@
       <p class="lede" data-i18n="fleet.introText">We keep the fleet small on purpose. Every yacht goes through a 250-point preventive inspection before each charter, and everything on board works — that sounds obvious until you have chartered elsewhere.</p>
     </div>
 
-    <div class="grid grid--3">
+    <div class="fleet-finder" data-fleet-finder data-reveal>
+      <div>
+        <p class="eyebrow" data-i18n="fleet.finderKicker">Find your fit</p>
+        <h3 data-i18n="fleet.finderTitle">Start with the people on board</h3>
+      </div>
+      <div class="fleet-filters" role="group" aria-label="Filter yachts">
+        <button class="is-active" type="button" data-fleet-filter="all" aria-pressed="true" data-i18n="fleet.filterAll">Show all</button>
+        <button type="button" data-fleet-filter="small" aria-pressed="false" data-i18n="fleet.filterSmall">Up to 7 guests</button>
+        <button type="button" data-fleet-filter="large" aria-pressed="false" data-i18n="fleet.filterLarge">8–10 guests</button>
+        <button type="button" data-fleet-filter="newest" aria-pressed="false" data-i18n="fleet.filterNewest">Built 2019 or later</button>
+      </div>
+    </div>
 
-      <article class="card" data-reveal>
+    <div class="grid grid--3 fleet-grid">
+
+      <article class="card" data-reveal data-fleet-card data-guests="10" data-built="2019">
         <div class="card__media">
           <span class="card__badge">2019</span>
           <img src="assets/img/yachts/oceanis461/o461-3.jpg" alt="Beneteau Oceanis 46.1" loading="lazy">
@@ -54,7 +67,7 @@
         </div>
       </article>
 
-      <article class="card" data-reveal data-delay="1">
+      <article class="card" data-reveal data-delay="1" data-fleet-card data-guests="7" data-built="2022">
         <div class="card__media">
           <span class="card__badge">2022</span>
           <img src="assets/img/yachts/bavaria/c42-01.jpg" alt="Bavaria C42" loading="lazy">
@@ -77,7 +90,7 @@
         </div>
       </article>
 
-      <article class="card" data-reveal data-delay="2">
+      <article class="card" data-reveal data-delay="2" data-fleet-card data-guests="10" data-built="2020">
         <div class="card__media">
           <span class="card__badge">2020</span>
           <img src="assets/img/yachts/hanse/hanse-26.webp" alt="Hanse 458" loading="lazy">
@@ -100,7 +113,7 @@
         </div>
       </article>
 
-      <article class="card" data-reveal>
+      <article class="card" data-reveal data-fleet-card data-guests="10" data-built="2011">
         <div class="card__media">
           <span class="card__badge">2011</span>
           <img src="assets/img/yachts/whisper/whisper-01.jpg" alt="Oceanis 43 Whisper" loading="lazy">
@@ -123,7 +136,7 @@
         </div>
       </article>
 
-      <article class="card" data-reveal data-delay="1">
+      <article class="card" data-reveal data-delay="1" data-fleet-card data-guests="10" data-built="2010">
         <div class="card__media">
           <span class="card__badge">2010</span>
           <img src="assets/img/destinations/saronic-card.webp" alt="An Oceanis 43 at anchor — Serenity is sister ship to Whisper" loading="lazy">
