@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Build sources and superseded originals are published but are not content.
+Disallow: /_build/
+Disallow: /_originals/
+
+Sitemap: https://www.summer-sail.com/sitemap.xml
