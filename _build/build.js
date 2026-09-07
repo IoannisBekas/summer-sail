@@ -13,6 +13,12 @@
 const fs = require('fs');
 const path = require('path');
 
+/* Absolute base URL used for <link rel=canonical>, og:url and sitemap.xml.
+   Point this at whichever host is the primary one. While the GitHub Pages
+   copy is a preview, leaving it on the real domain stops the preview
+   competing with the live site in search results. */
+const SITE_URL = process.env.SITE_URL || 'https://www.summer-sail.com/';
+
 const ROOT = path.resolve(__dirname, '..');
 const BUILD = __dirname;
 const PAGES = path.join(BUILD, 'pages');
@@ -70,7 +76,8 @@ for (const file of files) {
     .replace(/\{\{DESC\}\}/g, cfg.desc || '')
     .replace(/\{\{TITLE_TEXT\}\}/g, attr(en(cfg.title)))
     .replace(/\{\{DESC_TEXT\}\}/g, attr(en(cfg.desc)))
-    .replace(/\{\{SLUG\}\}/g, slug);
+    .replace(/\{\{SLUG\}\}/g, slug)
+    .replace(/https:\/\/www\.summer-sail\.com\//g, SITE_URL);
 
   let hdr = header;
   if (cfg.nav) {

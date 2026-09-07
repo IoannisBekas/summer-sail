@@ -11,6 +11,31 @@ Open `index.html` in a browser, or serve the folder:
 npx http-server . -p 4173 -c-1
 ```
 
+## Live
+
+Published to GitHub Pages from `main`, root folder:
+
+**https://ioannisbekas.github.io/summer-sail/**
+
+`.nojekyll` is committed so Pages serves the folder as-is rather than running
+Jekyll (which would silently drop `_build/` and `_originals/` and could mangle
+other files). `404.html` is picked up automatically and returns a real 404.
+
+### Which domain is canonical
+
+`<link rel="canonical">`, `og:url` and `sitemap.xml` currently point at
+**https://www.summer-sail.com/** — correct while the Pages copy is a preview,
+because it stops the preview competing with the live site in search results.
+
+If Pages becomes the primary site, rebuild with the base URL overridden:
+
+```bash
+SITE_URL="https://ioannisbekas.github.io/summer-sail/" node _build/build.js
+```
+
+Then update the `Sitemap:` line in `robots.txt` and the `<loc>` entries in
+`sitemap.xml` to match, and commit.
+
 ## Deploying
 
 Upload the whole folder to any static host (Netlify, Vercel, Cloudflare Pages, or
